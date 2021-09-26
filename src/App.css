@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.chess {
+
+}
+
+.chess-board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 800px;
+  border: 5px solid grey;
+}
+
+.chess-section--black {
+  width: 100px;
+  height: 100px;
+  background: #000;
+}
+
+.chess-section--white {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+}
