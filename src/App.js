@@ -9,14 +9,21 @@ class App extends Component {
       .fill([])
       .map((row, index) => {
         const isRowEven = index % 2 === 0;
+        const sectionOptions = {
+          isBlack: false,
+          isPlaceholder: false,
+        }
 
         return Array(8)
           .fill({})
-          .map((section, indexSection) => {
-            if(isRowEven) return indexSection % 2 === 0 ? {isBlack: true} : {isBlack: false};
-            return indexSection % 2 === 0 ? {isBlack: false} : {isBlack: true};
-          });
-      })
+          .map((section, indexSection) => ({
+            isBlack: isRowEven 
+                    ? indexSection % 2 !== 0
+                    : indexSection % 2 === 0
+          }));
+      }),
+    
+    currentPremovesPositions: {x: 0, y: 0},
   };
 
   render() {
@@ -29,7 +36,10 @@ class App extends Component {
             <div className="chess-board">
               { this.state.board.map(( row, index) => 
                 row.map(({isBlack}, indexSection) => (
-                  <div className={isBlack ? 'chess-section--black' : 'chess-section--white'} key={`${index}${indexSection}`} />
+                  <div
+                    className={isBlack ? 'chess-section--black' : 'chess-section--white'}
+                    key={`${index}${indexSection}`}
+                  />
                 ))
               ) }
             </div>
