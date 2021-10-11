@@ -2,6 +2,12 @@ import { Component } from "react";
 import './App.css';
 import { Game } from './logic/game';
 
+import { cloneObject } from "./helpers/utils";
+
+import Section from "./components/section";
+
+const game = new Game();
+
 class App extends Component {
 
   state = {
@@ -9,36 +15,46 @@ class App extends Component {
       .fill([])
       .map((row, index) => {
         const isRowEven = index % 2 === 0;
-        const sectionOptions = {
-          isBlack: false,
-          isPlaceholder: false,
-        }
 
         return Array(8)
           .fill({})
           .map((section, indexSection) => ({
             isBlack: isRowEven 
                     ? indexSection % 2 !== 0
-                    : indexSection % 2 === 0
+                    : indexSection % 2 === 0,
+            isPlaceholder: false,
           }));
       }),
     
-    currentPremovesPositions: {x: 0, y: 0},
+    currentPremovesPositions: [{x: 0, y: 0}],
+  };
+
+  chooseSection = (param) => {
+    this.setState({
+      currentPremovesPositions: game.getPremoves(param),
+    })
   };
 
   render() {
-    let game = new Game();
+
+    let boardInfo = cloneObject(this.state.board);
+
+    this.state.currentPremovesPositions.forEach(({x, y}) => {
+      boardInfo[x][y] = {...boardInfo[x][y], isPlaceholder: true};
+    });
 
     return (
       <div className="App">
         <header className="App-header">
           <div className="chess">
             <div className="chess-board">
-              { this.state.board.map(( row, index) => 
-                row.map(({isBlack}, indexSection) => (
-                  <div
-                    className={isBlack ? 'chess-section--black' : 'chess-section--white'}
-                    key={`${index}${indexSection}`}
+              { boardInfo.map(( row, indexRow) => 
+                row.map(({isBlack, isPlaceholder}, indexCol) => (
+                  <Section
+                    key={`${indexRow}${indexCol}`}
+                    isBlack={isBlack}
+                    isPlaceholder={isPlaceholder}
+                    onChooseSection={() => this.chooseSection({x: indexRow, y: indexCol})}
                   />
                 ))
               ) }
