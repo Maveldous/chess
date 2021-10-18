@@ -1,7 +1,6 @@
 export class Figure {
   name;
   img;
-  moveAbility;
   value;
   currentPosition;
 

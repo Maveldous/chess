@@ -8,7 +8,6 @@ export class Queen extends Figure {
     super({
       name: 'Queen',
       img: '',
-      moveAbility: '',
       value: 9,
       currentPosition: {x: 0, y: 0},
       ...figureInfo,
@@ -20,7 +19,7 @@ export class Queen extends Figure {
     const positions = [
       getXLinePositions({lineSectionsCount: this.XSectionCount, y}),
       getYLinePositions({lineSectionsCount: this.YSectionCount, x}),
-      // getRightDiagonalPositions({YSectionCount: this.YSectionCount, XSectionCount: this.XSectionCount, x, y}),
+      getRightDiagonalPositions({YSectionCount: this.YSectionCount, XSectionCount: this.XSectionCount, x, y}),
       getLeftDiagonalPositions({YSectionCount: this.YSectionCount, XSectionCount: this.XSectionCount, x, y}),
     ];
 

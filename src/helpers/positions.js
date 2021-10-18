@@ -10,11 +10,11 @@ export const getYLinePositions = ({lineSectionsCount, x}) =>
 
 export const getRightDiagonalPositions = ({YSectionCount, XSectionCount, x, y}) => {
   const positions = [];
-  let startedX = x, startedY = y;
+  let startedX = x - (YSectionCount - y - 1), startedY = YSectionCount - 1;
 
-  while (startedX !== 0 && startedY !== YSectionCount) {
-    startedX--;
-    startedY++;
+  if(x < YSectionCount - y - 1) {
+    startedX = 0;
+    startedY = y + x;
   }
 
   while (startedX !== XSectionCount && startedY !== -1) {
