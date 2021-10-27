@@ -17,10 +17,10 @@ export class Queen extends Figure {
 
   getPremovePositions({x, y}) {
     const positions = [
-      getXLinePositions({lineSectionsCount: this.XSectionCount, y}),
-      getYLinePositions({lineSectionsCount: this.YSectionCount, x}),
-      getRightDiagonalPositions({YSectionCount: this.YSectionCount, XSectionCount: this.XSectionCount, x, y}),
-      getLeftDiagonalPositions({YSectionCount: this.YSectionCount, XSectionCount: this.XSectionCount, x, y}),
+      getXLinePositions({y}),
+      getYLinePositions({x}),
+      getRightDiagonalPositions({x, y}),
+      getLeftDiagonalPositions({x, y}),
     ];
 
     return positions.flat().filter(pos => !(pos.x === x && pos.y === y));

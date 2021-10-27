@@ -1,14 +1,15 @@
-export const getXLinePositions = ({lineSectionsCount, y}) => 
+export const getXLinePositions = ({lineSectionsCount = 8, y}) => 
   Array(lineSectionsCount)
     .fill(0)
     .map((item, index) => ({x: index, y}));
 
-export const getYLinePositions = ({lineSectionsCount, x}) => 
+export const getYLinePositions = ({lineSectionsCount = 8, x}) => 
     Array(lineSectionsCount)
       .fill(0)
       .map((item, index) => ({y: index, x}));
 
-export const getRightDiagonalPositions = ({YSectionCount, XSectionCount, x, y}) => {
+export const getRightDiagonalPositions = ({x, y}) => {
+  const YSectionCount = 8, XSectionCount = 8; 
   const positions = [];
   let startedX = x - (YSectionCount - y - 1), startedY = YSectionCount - 1;
 
@@ -28,7 +29,8 @@ export const getRightDiagonalPositions = ({YSectionCount, XSectionCount, x, y}) 
 }
 
 
-export const getLeftDiagonalPositions = ({YSectionCount, XSectionCount, x, y}) => {
+export const getLeftDiagonalPositions = ({x, y}) => {
+    const YSectionCount = 8, XSectionCount = 8; 
     const positions = [];
     let startedX = x - y, startedY = 0;
 

@@ -2,7 +2,7 @@ import { Queen } from "./figures/queen";
 
 export class Game {
   constructor() {
-    this.queen = new Queen({}, {XSectionCount: 8, YSectionCount: 8});
+    this.queen = new Queen({});
 
     // console.log(queen.getPremovePositions());
   }

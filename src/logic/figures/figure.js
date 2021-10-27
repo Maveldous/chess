@@ -4,14 +4,8 @@ export class Figure {
   value;
   currentPosition;
 
-  XSectionCount;
-  YSectionCount;
-
-  constructor(figure, {XSectionCount, YSectionCount}) {
+  constructor(figure) {
     this.figure = figure;
-
-    this.XSectionCount = XSectionCount;
-    this.YSectionCount = YSectionCount;
   }
 
   set figure({name, img, moveAbility, value, currentPosition}) {
